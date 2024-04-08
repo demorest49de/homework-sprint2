@@ -1,25 +1,55 @@
 .sidebar {
+  visibility: hidden;
+  width: 317px;
+  height: 100VH;
+  position: fixed;
+  z-index: 2;
+  background-color: #FFFFFF;
 }
 
 .sidebar.open {
+  visibility: visible;
+  position: relative;
 }
 
 .background {
+  background-color: #000;
+  opacity: 0,6;
 }
 
 .nav {
+  padding-top: 30px;
+  width: 140px;
+  margin: 0px auto;
+
 }
 
 .nav a {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  font-size: 22px;
+  text-decoration: none;
+  color: #000;
 }
 
 .nav a:hover {
+  color: #58ACFF;
 }
 
 .nav a.active {
+  color: #0059B2;
+  text-decoration: underline;
 }
 .close {
+  background-color: #FFFFFF;
+  position: absolute;
+  right: 0px;
+  border: 0;
 }
 
+
 .close img {
+  width: 24px;
+  height: 24px;
 }
