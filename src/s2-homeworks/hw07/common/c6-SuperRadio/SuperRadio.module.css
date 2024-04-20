@@ -9,7 +9,17 @@
 }
 
 .label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.label span{
+  padding-bottom: 4px;
 }
 
 .options {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
