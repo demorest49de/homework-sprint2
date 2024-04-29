@@ -2,13 +2,19 @@
 }
 
 .clock {
+  gap: 30px;
+  width: 400px;
 }
 
 .watch {
+  width: 174px;
 }
 
 .watch strong {
+
 }
 
 .more {
+  width: 174px;
+  margin-bottom: 60px;
 }
