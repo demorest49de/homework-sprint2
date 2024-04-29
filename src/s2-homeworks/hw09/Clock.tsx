@@ -8,17 +8,14 @@ function Clock() {
     // for autotests // не менять // можно подсунуть в локалСторэдж нужную дату, чтоб увидеть как она отображается
     const [date, setDate] = useState<Date>(new Date(restoreState('hw9-date', Date.now())))
     const [show, setShow] = useState<boolean>(false)
-
-    let ttimerId = setTimeout(function tick() {
-        alert('tick');
-        ttimerId = setTimeout(tick, 2000); // (*)
-    }, 2000);
+    console.log(' date: ', date);
+    console.log(' timerId: ', timerId);
 
     const start = () => {
         // пишут студенты // запустить часы (должно отображаться реальное время, а не +1)
         // сохранить ид таймера (https://learn.javascript.ru/settimeout-setinterval#setinterval)
         let intervalId = setInterval(() => {
-            setDate(date)
+            setDate(new Date)
         }, 1000)
         setTimerId(intervalId)
     }
@@ -36,12 +33,28 @@ function Clock() {
         setShow(false)
     }
 
-    const stringTime = 'date->time' || <br/> // часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
-    const stringDate = 'date->date' || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
+    let formatterTime = new Intl.DateTimeFormat("ru", {
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric"
+    });
+
+    let formatterDate = new Intl.DateTimeFormat("ru");
+    let formatterDayName = new Intl.DateTimeFormat("en-US", {
+        weekday: "long",
+    });
+
+    let formatterMonthName = new Intl.DateTimeFormat("en-US", {
+        month: "long",
+    });
+
+    const stringTime = formatterTime.format(date) || <br/>
+    const stringDate = formatterDate.format(date) || <br/>
+
 
     // день недели на английском, месяц на английском (https://learn.javascript.ru/intl#intl-datetimeformat)
-    const stringDay = 'date->day' || <br/> // пишут студенты
-    const stringMonth = 'date->month' || <br/> // пишут студенты
+    const stringDay = formatterDayName.format(date) || <br/> // пишут студенты
+    const stringMonth = formatterMonthName.format(date) || <br/> // пишут студенты
 
     return (
         <div className={s.clock}>
@@ -75,14 +88,15 @@ function Clock() {
             <div className={s.buttonsContainer}>
                 <SuperButton
                     id={'hw9-button-start'}
-                    disabled={true} // пишут студенты // задизэйблить если таймер запущен
+                    xType={''}
+                    disabled={Boolean(timerId)} // пишут студенты // задизэйблить если таймер запущен
                     onClick={start}
                 >
                     start
                 </SuperButton>
                 <SuperButton
                     id={'hw9-button-stop'}
-                    disabled={true} // пишут студенты // задизэйблить если таймер не запущен
+                    disabled={!Boolean(timerId)} // пишут студенты // задизэйблить если таймер не запущен
                     onClick={stop}
                 >
                     stop
