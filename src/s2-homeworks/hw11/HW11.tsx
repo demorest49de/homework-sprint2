@@ -15,12 +15,26 @@ function HW11() {
     const [value1, setValue1] = useState(restoreState<number>('hw11-value1', 0))
     const [value2, setValue2] = useState(restoreState<number>('hw11-value2', 100))
 
-    const handleChange = (event: Event, newValue: number | number[]) => {
-        console.log(' newValue: ', newValue);
+    const handleChange = (event: Event, newValue: number | number[], activeThumb: number) => {
+        const minDistance = 2
+        console.log(' activeThumb: ', activeThumb);
         if (Array.isArray(newValue)) {
             const [val1, val2] = newValue
-            setValue1(val1)
-            setValue2(val2)
+            if (val2 - val1 < minDistance) {
+                if (activeThumb === 0) {
+                    // debugger
+                    const clamped = Math.min(newValue[0], 100 - minDistance);
+                    setValue1(clamped);
+                    setValue2(clamped + minDistance);
+                } else {
+                    const clamped = Math.max(newValue[1], minDistance);
+                    setValue1(clamped - minDistance);
+                    setValue2(clamped);
+                }
+            } else {
+                setValue1(val1)
+                setValue2(val2)
+            }
         }
         if (typeof newValue === 'number') {
             setValue1(newValue)
