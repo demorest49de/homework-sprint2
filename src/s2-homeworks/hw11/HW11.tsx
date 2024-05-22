@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import s from './HW11.module.css'
 import s2 from '../../s1-main/App.module.css'
-import { restoreState } from '../hw06/localStorage/localStorage'
+import {restoreState} from '../hw06/localStorage/localStorage'
 import SuperRange from './common/c7-SuperRange/SuperRange'
+import {type} from "node:os";
 
 /*
 * 1 - передать значения в оба слайдера
@@ -13,12 +14,19 @@ import SuperRange from './common/c7-SuperRange/SuperRange'
 function HW11() {
     // for autotests // не менять // можно подсунуть в локалСторэдж нужные числа, чтоб увидеть как они отображаются
     const [value1, setValue1] =
-        useState(restoreState<number | number[]>('hw11-value1', 0))
+        useState(restoreState<number>('hw11-value1', 0))
     const [value2, setValue2] =
-        useState(restoreState<number | number[]>('hw11-value2', 100))
+        useState(restoreState<number>('hw11-value2', 100))
 
-    const change = (event: Event, value: number | number[]) => {
-       setValue1(value)
+    const change = (event: Event, newValue: number | number[]) => {
+        if (Array.isArray(newValue)) {
+            const [value1, value2] = newValue
+            setValue1(value1)
+            setValue2(value2)
+        }
+        if (typeof newValue === 'number') {
+            setValue1(value1)
+        }
     }
 
     return (
@@ -45,7 +53,7 @@ function HW11() {
                         <SuperRange
                             id={'hw11-double-slider'}
                             // сделать так чтоб value1/2 изменялось // пишет студент
-                            value={value1}
+                            value={[value1, value2]}
                         />
 
                         <span id={'hw11-value-2'} className={s.number}>{value2}</span>
