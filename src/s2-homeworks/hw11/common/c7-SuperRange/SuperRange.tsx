@@ -12,6 +12,7 @@ const SuperRange: React.FC<SliderProps> = (props) => {
                     color: '#8B8B8B',
                 },
             }}
+            disableSwap={true}
             {...props} // отдаём слайдеру пропсы если они есть (value например там внутри)
         />
     )
