@@ -1,14 +1,14 @@
-[data-theme='1'] {
+html[data-theme='1'] {
     --color: #000000;
     --background: #FFFFFF;
 }
 
-[data-theme='2'] {
+html[data-theme='2'] {
     --color: #000000;
     --background: #DDEEFF;
 }
 
-[data-theme='3'] {
+html[data-theme='3'] {
     --color: #FFFFFF;
     --background: #212A34;
 }
