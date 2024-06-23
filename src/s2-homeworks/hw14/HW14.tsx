@@ -33,6 +33,7 @@ const HW14 = () => {
             .then((res) => {
                 console.log(res.data.techs);
                 setTechs(res.data.techs)
+                setLoading(false)
             })
             .catch((e) => {
                 alert(e.response.data.errorText || e.message)
