@@ -12,13 +12,19 @@ import {useSearchParams} from 'react-router-dom'
 * 4 - сделать стили в соответствии с дизайном
 * 5 - добавить HW14 в HW5/pages/JuniorPlus
 * */
-
+/**
+ *
+ *
+ */
 const getTechs = (find: string) => {
     return axios
         .get<{ techs: string[] }>(
             'https://samurai.it-incubator.io/api/3.0/homework/test2',
             {params: {find}}
         )
+        // .catch((e) => {
+        //     alert(e.response?.data?.errorText || e.message);
+        // });
 }
 
 const HW14 = () => {
@@ -26,7 +32,11 @@ const HW14 = () => {
     const [isLoading, setLoading] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<string[]>([])
-
+    /**
+     *
+     * todo
+     * если отработает кэтч на 25 строке  то в зен на 42 придет уже другой объект рес без даты!!))
+     */
     const sendQuery = (value: string) => {
         setLoading(true)
         getTechs(value)
