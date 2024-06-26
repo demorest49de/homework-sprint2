@@ -4,6 +4,7 @@
     align-items: center;
     margin-bottom: 40px;
     flex-wrap: wrap;
+    row-gap: 15px;
 }
 
 .pagination button {
