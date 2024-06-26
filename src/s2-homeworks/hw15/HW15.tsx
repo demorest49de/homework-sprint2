@@ -48,8 +48,10 @@ const HW15 = () => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
+
                 // делает студент
                 setTechs(res.data.techs)
+                setTotalCount(res.data.totalCount)
                 setLoading(false)
             })
             .catch((e) => {
@@ -59,9 +61,6 @@ const HW15 = () => {
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
-        console.log(' newPage, newCount: ', newPage, newCount
-        )
-        ;
         /**
          * setpage = CURRENT  PAGE
          */
@@ -94,10 +93,12 @@ const HW15 = () => {
     /**
      * сколько раз меняется стэйт столько будет и перезагрузок
      */
+
     useEffect(() => {
-        const params = Object.fromEntries(searchParams)
 
         sendQuery({page: page, count: count, sort: "asc"})
+
+        const params = Object.fromEntries(searchParams)
 
         setPage(+params.page || 1)
 
