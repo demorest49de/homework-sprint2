@@ -34,7 +34,7 @@ const HW14 = () => {
     const [techs, setTechs] = useState<string[]>([])
     /**
      *
-     * todo
+     *
      * если отработает кэтч на 25 строке  то в зен на 42 придет уже другой объект рес без даты!!))
      */
     const sendQuery = (value: string) => {

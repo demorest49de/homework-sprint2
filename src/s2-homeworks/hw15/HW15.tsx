@@ -80,7 +80,7 @@ const HW15 = () => {
     const onChangeSort = (newSort: string) => {
         // делает студент
 
-        // setSort(
+        setSort(newSort)
         // setPage(1) // при сортировке сбрасывать на 1 страницу
 
         // sendQuery(
@@ -92,6 +92,8 @@ const HW15 = () => {
     //region useEffect
     /**
      * сколько раз меняется стэйт столько будет и перезагрузок
+     * todo http://localhost:3000/#/junior-plus?count=4&page=1&sort=asc ----- при перезагрузке сначала появляется неправильно об
+     * щее колво стр потом подгружается правильно
      */
 
     useEffect(() => {
