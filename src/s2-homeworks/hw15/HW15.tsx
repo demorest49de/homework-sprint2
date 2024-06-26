@@ -33,9 +33,6 @@ const getTechs = (params: ParamsType) => {
             'https://samurai.it-incubator.io/api/3.0/homework/test3',
             {params}
         )
-        .catch((e) => {
-            alert(e.response?.data?.errorText || e.message)
-        })
 }
 
 const HW15 = () => {
@@ -47,25 +44,27 @@ const HW15 = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<TechType[]>([])
 
-    const sendQuery = (params: any) => {
+    const sendQuery = (params: ParamsType) => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
+                console.log(' res: ', res);
                 // делает студент
-
-                // сохранить пришедшие данные
-
-                //
+                setTechs(res.data.techs)
+                setLoading(false)
+            })
+            .catch((e) => {
+                alert(e.response?.data?.errorText || e.message)
             })
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
 
-        // setPage(
-        // setCount(
+        setPage(newPage)
+        setCount(newCount)
 
-        // sendQuery(
+        sendQuery({count: newCount, page: newPage, sort: ""})
         // setSearchParams(
 
         //
@@ -83,12 +82,18 @@ const HW15 = () => {
         //
     }
 
+    //region useEffect
+    /**
+     * сколько раз меняется стэйт столько будет и перезагрузок
+     */
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
-        sendQuery({page: params.page, count: params.count})
+        console.log(' params: ', params);
+        sendQuery({page: +params.page, count: +params.count, sort: ""})
         setPage(+params.page || 1)
         setCount(+params.count || 4)
     }, [])
+    //endregion useEffect
 
     const mappedTechs = techs.map(t => (
         <div key={t.id} className={s.row}>
