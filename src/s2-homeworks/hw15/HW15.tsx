@@ -48,7 +48,6 @@ const HW15 = () => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
-                console.log(' res: ', res);
                 // делает студент
                 setTechs(res.data.techs)
                 setLoading(false)
@@ -60,12 +59,21 @@ const HW15 = () => {
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
-
+        console.log(' newPage, newCount: ', newPage, newCount
+        )
+        ;
+        /**
+         * setpage = CURRENT  PAGE
+         */
         setPage(newPage)
+        /**
+         *SETCOUNT = CURRENT  RANGE ON THE PAGE
+         */
         setCount(newCount)
 
-        sendQuery({count: newCount, page: newPage, sort: ""})
-        // setSearchParams(
+        sendQuery({count: newCount, page: newPage, sort: "asc"})
+
+        setSearchParams({count: newCount.toString(), page: newPage.toString(), sort: "asc"})
 
         //
     }
@@ -88,10 +96,13 @@ const HW15 = () => {
      */
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
-        console.log(' params: ', params);
-        sendQuery({page: +params.page, count: +params.count, sort: ""})
+
+        sendQuery({page: page, count: count, sort: "asc"})
+
         setPage(+params.page || 1)
+
         setCount(+params.count || 4)
+
     }, [])
     //endregion useEffect
 
