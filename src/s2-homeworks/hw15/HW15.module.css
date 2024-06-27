@@ -1,47 +1,51 @@
 .tech {
-    width: 50%;
-    padding-left: 15px;
+  width: 50%;
+  padding-left: 15px;
 }
 
 .developer {
-    width: 50%;
+  width: 50%;
 }
 
 .techHeader {
-    width: 50%;
-    padding: 12px 0px 12px 15px;
-    background-color: darkgray;
+  width: 50%;
+  padding: 12px 0px 12px 15px;
+  background-color: darkgray;
 }
 
 .developerHeader {
-    padding: 12px 0px;
-    background-color: darkgrey;
-    width: 50%;
+  padding: 12px 0px;
+  background-color: darkgrey;
+  width: 50%;
 }
 
 .row {
-    display: flex;
-    justify-content: start;
-    padding: 12px 0px;
+  display: flex;
+  justify-content: start;
+  padding: 12px 0px;
 }
 
 .row:nth-child(even) {
-    background-color: lightgrey;
+  background-color: lightgrey;
 }
 
 .row:nth-child(odd) {
-    background-color: white;
+  background-color: white;
 }
 
 .rowHeader {
-    display: flex;
-    justify-content: stretch;
+  display: flex;
+  justify-content: stretch;
 }
 
-.loadingBlock{
-    height: 24px;
+.loadingBlock {
+  height: 25px;
+  margin-bottom: 40px;
 }
 
 .loading {
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  height: 65px;
 }

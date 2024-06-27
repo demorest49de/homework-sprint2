@@ -5,6 +5,7 @@
     margin-bottom: 40px;
     flex-wrap: wrap;
     row-gap: 15px;
+    height: 25px;
 }
 
 .pagination button {

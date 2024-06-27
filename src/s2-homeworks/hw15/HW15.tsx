@@ -5,6 +5,7 @@ import axios from 'axios'
 import SuperPagination from './common/c9-SuperPagination/SuperPagination'
 import {useSearchParams} from 'react-router-dom'
 import SuperSort from './common/c10-SuperSort/SuperSort'
+import {CircularProgress} from "@mui/material";
 
 /*
 * 1 - дописать SuperPagination ✔️
@@ -125,15 +126,18 @@ const HW15 = () => {
             <div className={s2.hwTitle}>Homework #15</div>
 
             <div className={s2.hw}>
-                <div className={s.loadingBlock}>{idLoading && <div id={'hw15-loading'} className={s.loading}>Loading...</div>}</div>
+                {/*<div className={s.loadingBlock}>{idLoading && <div id={'hw15-loading'} className={s.loading}>Loading...</div>}</div>*/}
 
-
-                <SuperPagination
-                    page={page}
-                    itemsCountForPage={count}
-                    totalCount={totalCount}
-                    onChange={onChangePagination}
-                />
+                <div className={s.loadingBlock}>
+                    {idLoading ? <div id={'hw15-loading'} className={s.loading}>
+                        <CircularProgress/></div> :
+                        <SuperPagination
+                        page={page}
+                        itemsCountForPage={count}
+                        totalCount={totalCount}
+                        onChange={onChangePagination}
+                    />}
+                </div>
 
                 <div className={s.rowHeader}>
                     <div className={s.techHeader}>
