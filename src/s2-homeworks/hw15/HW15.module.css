@@ -38,6 +38,10 @@
     justify-content: stretch;
 }
 
+.loadingBlock{
+    height: 24px;
+}
+
 .loading {
 
 }
