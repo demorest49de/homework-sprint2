@@ -38,10 +38,14 @@
     justify-content: stretch;
 }
 
-.loadingBlock{
-    height: 24px;
+.loadingBlock {
+    height: 25px;
+    margin-bottom: 40px;
 }
 
 .loading {
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65px;
 }
