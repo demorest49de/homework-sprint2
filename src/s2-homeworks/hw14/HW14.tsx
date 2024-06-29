@@ -22,9 +22,15 @@ const getTechs = (find: string) => {
             'https://samurai.it-incubator.io/api/3.0/homework/test2',
             {params: {find}}
         )
-        // .catch((e) => {
-        //     alert(e.response?.data?.errorText || e.message);
-        // });
+    /**
+     * прикол лол кек
+     * здесь кэтч мешает потому ts думает если мы
+     *  получим ошибку то в try  придут другие
+     *  данные
+     */
+    // .catch((e) => {
+    //     alert(e.response?.data?.errorText || e.message);
+    // });
 }
 
 const HW14 = () => {
