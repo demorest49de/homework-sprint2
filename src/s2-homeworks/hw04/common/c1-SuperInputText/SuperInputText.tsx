@@ -40,6 +40,10 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
 
         onChangeText?.(e.currentTarget.value)
     }
+    /**
+     * onkeypress - нужен что бы выполнять действия при нажатии отдельных кнопок
+     * @param e
+     */
     const onKeyPressCallback = (e: KeyboardEvent<HTMLInputElement>) => {
         onKeyPress?.(e)
 

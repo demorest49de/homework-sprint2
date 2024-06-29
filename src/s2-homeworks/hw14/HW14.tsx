@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import s2 from '../../s1-main/App.module.css'
 import s from './HW14.module.css'
-import axios, {AxiosResponse} from 'axios'
+import axios, {AxiosError, AxiosResponse} from 'axios'
 import SuperDebouncedInput from './common/c8-SuperDebouncedInput/SuperDebouncedInput'
 import {useSearchParams} from 'react-router-dom'
+
 
 /*
 * 1 - дописать функцию onChangeTextCallback в SuperDebouncedInput
@@ -38,32 +39,49 @@ const HW14 = () => {
     const [isLoading, setLoading] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<string[]>([])
+
     /**
      *
      *
      * если отработает кэтч на 25 строке  то в зен на 42 придет уже другой объект рес без даты!!))
      */
-    const sendQuery = (value: string) => {
+    let error: any = undefined;
+    const sendQuery = async (value: string) => {
         setLoading(true)
-        getTechs(value)
-            .then((res) => {
-                console.log(res.data.techs);
-                setTechs(res.data.techs)
-                setLoading(false)
-            })
-            .catch((e) => {
-                alert(e.response.data.errorText || e.message)
-            })
+        try {
+            const res = await getTechs(value)
+
+            /**
+             * тест на Error чере throw new
+             */
+            // throw new Error('foo error')
+            setTechs(res.data.techs)
+            setLoading(false)
+        } catch (e) {
+
+            if (e instanceof AxiosError) {
+                console.log(' e.message: ',e, e.message ? e.message : e.response?.data.errorText);
+                return
+            }
+            if (e instanceof Error) {
+                console.log(' e.message: ', e.message);
+                error = e;
+                return
+            }
+            console.log(' some error occurred:');
+        }
+        // finally {
+        //     console.log(' error: ', error.message);
+        // }
     }
 
     const onChangeText = (value: string) => {
         setFind(value)
-
         setSearchParams({find: value})
-
     }
 
     useEffect(() => {
+
         const params = Object.fromEntries(searchParams)
         sendQuery(params.find || '')
         setFind(params.find || '')
@@ -81,6 +99,7 @@ const HW14 = () => {
 
             <div className={s2.hw}>
                 <SuperDebouncedInput
+                    className={s2.superDebounceInput}
                     id={'hw14-super-debounced-input'}
                     value={find}
                     onChangeText={onChangeText}
@@ -90,7 +109,6 @@ const HW14 = () => {
                 <div id={'hw14-loading'} className={s.loading}>
                     {isLoading ? '...ищем' : <br/>}
                 </div>
-
                 {mappedTechs}
             </div>
         </div>
